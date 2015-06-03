@@ -1,0 +1,21 @@
+{% if DEFAULT_PAGINATION and articles_paginator.num_pages>1 %}
+<div class="container">
+    <div class="row">
+        <div class="center-align">
+        <ul class="pagination">
+            {% if articles_page.has_previous() %}
+            <li class="waves-effect"><a href="{{SITEURL}}/{{articles_previous_page.url}}"><i class="mdi-navigation-chevron-left"></i></a></li>
+            {% else %}
+            <li class="disabled"><a href="#"><i class="mdi-navigation-chevron-left"></i></a></li>
+            {% endif %}
+            <li class="diabled">{{articles_page.number}}/{{articles_paginator.num_pages}}</li>
+            {% if articles_page.has_next() %}
+            <li class="waves-effect"><a href="{{SITEURL}}/{{articles_next_page.url}}"><i class="mdi-navigation-chevron-right"></i></a></li>
+            {% else %}
+            <li class="disabled"><a href="#"><i class="mdi-navigation-chevron-right"></i></a></li>
+            {% endif %}
+        </ul>
+        </div>
+    </div>
+</div>
+{% endif %}

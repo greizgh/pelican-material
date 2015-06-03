@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+{% for keyword in article.keywords %}
+<meta name="keywords" contents="{{keyword}}" />
+{% endfor %}
+
+{% for description in article.description %}
+<meta name="description" contents="{{description}}" />
+{% endfor %}
+
+{% for tag in article.tags %}
+<meta name="tags" contents="{{tag}}" />
+{% endfor %}
+{% endblock %}
+
+{% block title %}{{ SITENAME }} - {{article.title}}{% endblock %}
+
+{% block content %}
+<article>
+    <h1><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+                                                  class="orange-text"
+                                                  title="Permalink vers {{ article.title|striptags }}">
+            {{ article.title }}
+        </a>
+    </h1>
+    <div class="flow-text section">
+        {{ article.content }}
+    </div>
+    <div class="divider"></div>
+    <div class="row article-details">
+        <div class="col m4 s12">
+            <i class="mdi-action-event" title="Date de publication"> {{article.locale_date}}</i>
+            {% if article.modified %}
+            <br/>
+            <i class="mdi-editor-mode-edit" title="Date d'édition"> {{article.locale_modified}}</i>
+            {% endif %}
+        </div>
+        <div class="col m4 s12">
+            <i class="mdi-action-list" title="Catégorie"> <a href="{{SITEURL}}/{{article.category.url}}">{{article.category}}</a></i>
+        </div>
+        <div class="col m4 s12">
+            <i class="mdi-action-label" title="tags"> </i>
+            {% for tag in article.tags %}
+            <a href="{{SITEURL}}/{{tag.url}}">{{tag}}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</article>
+{% endblock %}

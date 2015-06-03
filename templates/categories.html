@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Catégories{% endblock %}
+
+{% block content %}
+<h1 class="orange-text">Catégories du blog</h1>
+<div class="collection">
+    {%- for cat, articles in categories|sort_by_article_count %}
+    <a class="collection-item" href="{{ SITEURL }}/{{ cat.url }}">{{ cat }} <sup>{{ articles|count }}</sup></a>
+    {% endfor %}
+<div>
+{% endblock %}

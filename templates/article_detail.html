@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="card">
+        <div class="card-content flow-text">
+            <h2><a class="orange-text" href="{{SITEURL}}/{{article.url}}">{{article.title}}</a></h2>
+            <div>{{article.summary}}</div>
+        </div>
+        <div class="card-action">
+            <a href="{{SITEURL}}/{{article.url}}">Lire</a>
+            <span class="right">
+                <i class="mdi-action-label-outline" title="tags"> </i>
+                {% for tag in article.tags %}
+                <a href="{{SITEURL}}/{{tag.url}}">{{tag}}</a>
+                {% endfor %}
+            </span>
+        </div>
+    </div>
+</div>

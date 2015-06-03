@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+    <head>
+        {% block head %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        <meta charset="utf-8" />
+        {% if FEED_ALL_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+        {% endif %}
+        {% if FEED_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+        {% endif %}
+        {% if FEED_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_ATOM and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_RSS and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+        {% endif %}
+        {% if TAG_FEED_ATOM and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+        {% endif %}
+        {% if TAG_FEED_RSS and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+        {% endif %}
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/bower_components/materialize/dist/css/materialize.min.css">
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pygment.css">
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
+        {% endblock head %}
+    </head>
+
+    <body>
+        <header>
+            <nav class="blue-grey darken-3" role="navigation">
+                <div class="nav-wrapper container">
+                    <a href="{{SITEURL}}" class="brand-logo">{{SITENAME}}</a>
+                    <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                    <ul id="dropdown" class="dropdown-content">
+                        {% if DISPLAY_CATEGORIES_ON_MENU %}
+                        {% for cat, null in categories %}
+                        <li{% if cat == category %} class="active"{% endif %}><a class="truncate" href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a class="dropdown-button" href="#!" data-activates="dropdown">Catégories<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                        <li><a href="{{SITEURL}}/archives.html">Archives</a></li>
+                    </ul>
+                    <ul id="mobile-nav" class="side-nav">
+                        {% if DISPLAY_CATEGORIES_ON_MENU %}
+                        {% for cat, null in categories %}
+                        <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                        {% endfor %}
+                        {% endif %}
+                        <li><a href="{{SITEURL}}/archives.html">Archives</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+        </main>
+
+        <footer class="page-footer grey darken-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="grey-text">À propos</h5>
+                        <p class="grey-text">
+                        {{ABOUT}}
+                        </p>
+                    </div>
+                    <div class="col l3 s12">
+                        <h5 class="grey-text">Flux</h5>
+                        <ul>
+                            <li><a class="grey-text" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" title="Flux Atom du {{ SITENAME }}">Atom</a></li>
+                        </ul>
+                    </div>
+                    <div class="col l3 s12">
+                        {% if SOCIAL %}
+                        <h5 class="grey-text">Social</h5>
+                        <ul>
+                            {% for name, link in SOCIAL %}
+                            <li><a class="grey-text" href="{{ link }}">{{ name }}</a></li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container center grey-text text-darken-2">
+                    Carefully handcrafted with <i class="mdi-action-favorite"></i> - CC-BY-NC-SA
+                </div>
+            </div>
+        </footer>
+
+        {% block body_end %}
+        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/bower_components/materialize/dist/js/materialize.min.js"></script>
+        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/init.js"></script>
+        {% endblock body_end %}
+    </body>
+</html>
