@@ -13,7 +13,7 @@ main {
 }
 
 blockquote {
-    border-color: #FF9800;
+    border-color: #ff9800;
 }
 
 article {
@@ -34,15 +34,24 @@ article h1 {
 
 article h2 {
     font-size: 2.5rem;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ff9800;
 }
 
 article h3 {
     font-size: 2rem;
-    color: #424242;
+    color: #ff9800;
 }
 
 article ul li {
     list-style-type: square;
     margin-left: 2rem;
+}
+
+.figure {
+    text-align: center;
+}
+
+.caption {
+    font-size: smaller;
+    margin-top: 0;
 }
