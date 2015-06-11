@@ -17,23 +17,23 @@
 {% block title %}{{ SITENAME }} - {{article.title}}{% endblock %}
 
 {% block content %}
-<article>
-    <h1><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 itemprop="name"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
                                                   class="orange-text"
                                                   title="Permalink vers {{ article.title|striptags }}">
             {{ article.title }}
         </a>
     </h1>
-    <div class="flow-text section">
+    <div class="flow-text section" itemprop="text">
         {{ article.content }}
     </div>
     <div class="divider"></div>
     <div class="row article-details">
         <div class="col m4 s12">
-            <i class="mdi-action-event" title="Date de publication"> {{article.locale_date}}</i>
+            <i class="mdi-action-event" title="Date de publication"> <time datetime="{{article.date.strftime('%Y-%m-%d')}}" itemprop="dateCreated">{{article.locale_date}}</time></i>
             {% if article.modified %}
             <br/>
-            <i class="mdi-editor-mode-edit" title="Date d'édition"> {{article.locale_modified}}</i>
+            <i class="mdi-editor-mode-edit" title="Date d'édition"> <time datetime="{{article.modified.strftime('%Y-%m-%d')}}" itemprop="dateModified">{{article.locale_modified}}</time></i>
             {% endif %}
         </div>
         <div class="col m4 s12">
