@@ -14,6 +14,8 @@ JINJA_FILTERS = {
         reverse=True)} # reversed for descending order
 ```
 
+You will probably want to use [pelican-materialbox](https://github.com/greizgh/pelican-meterialbox), a pelican plugin to use [materialbowed](http://materializecss.com/media.html#materialbox) from Materialize.
+
 ## License
 
 MIT
