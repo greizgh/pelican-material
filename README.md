@@ -7,6 +7,7 @@ Material is a [pelican](http://blog.getpelican.com/) theme based on [Materialize
 This template uses a cutom filter to sort tags by article count. You need to add this to your config:
 
 ```python
+from functools import partial
 JINJA_FILTERS = {
     'sort_by_article_count': partial(
         sorted,
