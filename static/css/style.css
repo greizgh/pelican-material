@@ -55,3 +55,7 @@ article ul li {
     font-size: smaller;
     margin-top: 0;
 }
+
+.highlight, .highlighttable {
+    line-height: 1.1em;
+}
