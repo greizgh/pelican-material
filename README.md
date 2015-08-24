@@ -2,6 +2,15 @@
 
 Material is a [pelican](http://blog.getpelican.com/) theme based on [Materialize](http://materializecss.com/), a material design framework.
 
+## Dependencies
+
+Dependencies are managed through [bower](http://bower.io/).
+Once you have bower, you are only one command away to use the theme.
+
+Run this command from the `static` directory:
+
+    bower install
+
 ## Configuration
 
 This template uses a cutom filter to sort tags by article count. You need to add this to your config:
